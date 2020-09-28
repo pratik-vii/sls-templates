@@ -2,14 +2,11 @@ package com.ssltemplates.pretokengen.application.event;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class PreTokenGenerationResponse implements Serializable, Cloneable {
     private ClaimsOverrideDetails claimsOverrideDetails;
-    private List<String> claimsToSuppress;
-    private GroupOverrideDetails groupOverrideDetails;
 
     public PreTokenGenerationResponse() {
         claimsOverrideDetails = new ClaimsOverrideDetails();
@@ -21,8 +18,12 @@ public class PreTokenGenerationResponse implements Serializable, Cloneable {
 
     static class ClaimsOverrideDetails implements Serializable, Cloneable {
 
-        private Map<String, String> claimsToAddOrOverride = new HashMap<>();
+        private Map<String, String> claimsToAddOrOverride;
+        private List<String> claimsToSuppress;
+        private GroupOverrideDetails groupOverrideDetails;
 
+        public ClaimsOverrideDetails() {
+        }
 
         public void addClaim(String key, String value) {
             claimsToAddOrOverride.put(key, value);
@@ -38,13 +39,32 @@ public class PreTokenGenerationResponse implements Serializable, Cloneable {
             this.claimsToAddOrOverride = claimsToAddOrOverride;
         }
 
+        public List<String> getClaimsToSuppress() {
+            return claimsToSuppress;
+        }
+
+        public void setClaimsToSuppress(List<String> claimsToSuppress) {
+            this.claimsToSuppress = claimsToSuppress;
+        }
+
+        public GroupOverrideDetails getGroupOverrideDetails() {
+            return groupOverrideDetails;
+        }
+
+        public void setGroupOverrideDetails(GroupOverrideDetails groupOverrideDetails) {
+            this.groupOverrideDetails = groupOverrideDetails;
+        }
 
         @Override
         public String toString() {
             final StringBuilder sb = new StringBuilder();
             sb.append("{");
             if (getClaimsToAddOrOverride() != null)
-                sb.append("claimsToAddOrOverride: ").append(getClaimsToAddOrOverride().toString()).append(" ");
+                sb.append("claimsToAddOrOverride: ").append(getClaimsToAddOrOverride().toString()).append(", ");
+            if (getClaimsToSuppress() != null)
+                sb.append("claimsToSuppress: ").append(getClaimsToSuppress().toString()).append(", ");
+            if (getGroupOverrideDetails() != null)
+                sb.append("groupOverrideDetails: ").append(getGroupOverrideDetails().toString()).append(" ");
             sb.append("}");
             return sb.toString();
         }
@@ -108,32 +128,12 @@ public class PreTokenGenerationResponse implements Serializable, Cloneable {
         this.claimsOverrideDetails = claimsOverrideDetails;
     }
 
-    public List<String> getClaimsToSuppress() {
-        return claimsToSuppress;
-    }
-
-    public void setClaimsToSuppress(List<String> claimsToSuppress) {
-        this.claimsToSuppress = claimsToSuppress;
-    }
-
-    public GroupOverrideDetails getGroupOverrideDetails() {
-        return groupOverrideDetails;
-    }
-
-    public void setGroupOverrideDetails(GroupOverrideDetails groupOverrideDetails) {
-        this.groupOverrideDetails = groupOverrideDetails;
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getClaimsOverrideDetails() != null)
-            sb.append("claimsOverrideDetails: ").append(getClaimsOverrideDetails().toString()).append(", ");
-        if (getClaimsToSuppress() != null)
-            sb.append("claimsToSuppress: ").append(getClaimsToSuppress().toString()).append(", ");
-        if (getGroupOverrideDetails() != null)
-            sb.append("groupOverrideDetails: ").append(getGroupOverrideDetails().toString()).append(" ");
+            sb.append("claimsOverrideDetails: ").append(getClaimsOverrideDetails().toString()).append(" ");
         sb.append("}");
         return sb.toString();
     }
