@@ -90,7 +90,7 @@ public class PreTokenGenerationResponse implements Serializable, Cloneable {
             final StringBuilder sb = new StringBuilder();
             sb.append("{");
             if (getGroupsToOverride() != null)
-                sb.append("claimsOverrideDetails: ").append(getGroupsToOverride().toString()).append(", ");
+                sb.append("groupsToOverride: ").append(getGroupsToOverride().toString()).append(", ");
             if (getIamRolesToOverride() != null)
                 sb.append("iamRolesToOverride: ").append(getIamRolesToOverride().toString()).append(", ");
             if (getPreferredRole() != null)
