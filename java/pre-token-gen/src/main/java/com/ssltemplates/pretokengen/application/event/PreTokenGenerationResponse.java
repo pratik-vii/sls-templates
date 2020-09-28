@@ -1,11 +1,15 @@
 package com.ssltemplates.pretokengen.application.event;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PreTokenGenerationResponse implements Serializable, Cloneable {
     private ClaimsOverrideDetails claimsOverrideDetails;
+    private List<String> claimsToSuppress;
+    private GroupOverrideDetails groupOverrideDetails;
 
     public PreTokenGenerationResponse() {
         claimsOverrideDetails = new ClaimsOverrideDetails();
@@ -46,6 +50,56 @@ public class PreTokenGenerationResponse implements Serializable, Cloneable {
         }
     }
 
+    static class GroupOverrideDetails implements Serializable, Cloneable {
+
+        private List<String> groupsToOverride;
+        private List<String> iamRolesToOverride;
+        private String preferredRole;
+
+        public GroupOverrideDetails() {
+            this.groupsToOverride = new ArrayList<>();
+            this.iamRolesToOverride = new ArrayList<>();
+        }
+
+        public List<String> getGroupsToOverride() {
+            return groupsToOverride;
+        }
+
+        public void setGroupsToOverride(List<String> groupsToOverride) {
+            this.groupsToOverride = groupsToOverride;
+        }
+
+        public List<String> getIamRolesToOverride() {
+            return iamRolesToOverride;
+        }
+
+        public void setIamRolesToOverride(List<String> iamRolesToOverride) {
+            this.iamRolesToOverride = iamRolesToOverride;
+        }
+
+        public String getPreferredRole() {
+            return preferredRole;
+        }
+
+        public void setPreferredRole(String preferredRole) {
+            this.preferredRole = preferredRole;
+        }
+
+        @Override
+        public String toString() {
+            final StringBuilder sb = new StringBuilder();
+            sb.append("{");
+            if (getGroupsToOverride() != null)
+                sb.append("claimsOverrideDetails: ").append(getGroupsToOverride().toString()).append(", ");
+            if (getIamRolesToOverride() != null)
+                sb.append("iamRolesToOverride: ").append(getIamRolesToOverride().toString()).append(", ");
+            if (getPreferredRole() != null)
+                sb.append("preferredRole: ").append(getPreferredRole()).append(" ");
+            sb.append("}");
+            return sb.toString();
+        }
+    }
+
     public ClaimsOverrideDetails getClaimsOverrideDetails() {
         return claimsOverrideDetails;
     }
@@ -54,12 +108,32 @@ public class PreTokenGenerationResponse implements Serializable, Cloneable {
         this.claimsOverrideDetails = claimsOverrideDetails;
     }
 
+    public List<String> getClaimsToSuppress() {
+        return claimsToSuppress;
+    }
+
+    public void setClaimsToSuppress(List<String> claimsToSuppress) {
+        this.claimsToSuppress = claimsToSuppress;
+    }
+
+    public GroupOverrideDetails getGroupOverrideDetails() {
+        return groupOverrideDetails;
+    }
+
+    public void setGroupOverrideDetails(GroupOverrideDetails groupOverrideDetails) {
+        this.groupOverrideDetails = groupOverrideDetails;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getClaimsOverrideDetails() != null)
-            sb.append("claimsOverrideDetails: ").append(getClaimsOverrideDetails().toString()).append(" ");
+            sb.append("claimsOverrideDetails: ").append(getClaimsOverrideDetails().toString()).append(", ");
+        if (getClaimsToSuppress() != null)
+            sb.append("claimsToSuppress: ").append(getClaimsToSuppress().toString()).append(", ");
+        if (getGroupOverrideDetails() != null)
+            sb.append("groupOverrideDetails: ").append(getGroupOverrideDetails().toString()).append(" ");
         sb.append("}");
         return sb.toString();
     }
@@ -72,5 +146,4 @@ public class PreTokenGenerationResponse implements Serializable, Cloneable {
             throw new IllegalStateException("Got a CloneNotSupportedException from Object.clone()", e);
         }
     }
-
 }
