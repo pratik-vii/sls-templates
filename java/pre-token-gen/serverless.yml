@@ -1,0 +1,28 @@
+service: aws-trigger
+provider:
+  name: aws
+  runtime: java11
+  stage: ${opt:stage, 'dev'}
+  description: service for aws pre-token generation
+#  region: ${file(./config/config.${self:provider.stage}.json):REGION}
+#  deploymentBucket:
+#    name: serverless-artifacts
+#    deploymentPrefix: serverless
+#    serverSideEncryption: AES256
+
+
+package:
+  artifact: build/distributions/pre-token-gen-1.0.zip
+
+functions:
+  pre-token-gen:
+    description: lambda for aws cognito pretoken generation trigger
+    handler: com.ssltemplates.pretokengen.application.handlers.Handler
+#    role: ${file(./config/config.${self:provider.stage}.json):ROLE}
+#    tags: ${file(./config/config.${self:provider.stage}.json):LAMBDA_TAGS}
+#    vpc:
+#      securityGroupIds:
+#        - ${file(./config/config.${self:provider.stage}.json):SG1}
+#      subnetIds:
+#        - ${file(./config/config.${self:provider.stage}.json):SUBNET1}
+#        - ${file(./config/config.${self:provider.stage}.json):SUBNET2}
