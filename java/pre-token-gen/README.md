@@ -4,7 +4,7 @@ Lambda for Pre Token Generation Lambda Trigger, You cna find event details in [A
 
 Implemented Event Structure
 
-```json
+```
 {
     "request": {
         "userAttributes": {
