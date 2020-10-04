@@ -1,0 +1,7 @@
+{
+  "name": "lambda-offline",
+  "version": "1.0.0",
+  "dependencies": {
+    "serverless-offline": "^6.7.0"
+  }
+}

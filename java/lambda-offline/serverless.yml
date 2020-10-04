@@ -1,0 +1,23 @@
+plugins:
+  - serverless-offline
+
+service: lambda-offline
+provider:
+  name: aws
+  runtime: java11
+  stage: ${opt:stage, 'dev'}
+  description: service of JAVA serverless offline
+
+
+
+package:
+  artifact: build/distributions/lambda-offline-1.0.zip
+
+functions:
+  hello:
+    description: lambda to test serverless offline
+    handler: com.slstemplates.lambdaoffline.application.handlers.Handler
+    events:
+      - http:
+          method: GET
+          path: /hello
