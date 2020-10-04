@@ -1,6 +1,6 @@
-package com.ssltemplates.pretokengen.application.service;
+package com.slstemplates.pretokengen.application.service;
 
-import com.ssltemplates.pretokengen.application.event.PreTokenGenerationResponse;
+import com.slstemplates.pretokengen.application.event.PreTokenGenerationResponse;
 
 public class PreTokenService {
     public PreTokenGenerationResponse getPreTokenGenResponse(String email) {
