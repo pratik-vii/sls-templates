@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'com.ssltemplates'
+group 'com.slstemplates'
 version '1.0'
 
 repositories {

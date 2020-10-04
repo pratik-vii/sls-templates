@@ -1,4 +1,4 @@
-package com.ssltemplates.pretokengen.application.event;
+package com.slstemplates.pretokengen.application.event;
 
 import java.io.Serializable;
 import java.util.ArrayList;
