@@ -88,7 +88,7 @@ Lambda invoke command,
 aws lambda invoke --endpoint-url http://localhost:3002 --function-name lambda-offline-dev-hello --payload {} "hello-out"
 ```
 
-As you can see in hello-out file created in current working dir will contain,
+As you can see in `hello-out` file created in current working dir will contain,
 ```
 {"body":"Hello World!"}
 ```
