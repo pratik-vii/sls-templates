@@ -17,3 +17,7 @@ functions:
   hello:
     description: lambda to test serverless offline
     handler: com.slstemplates.lambdaoffline.application.handlers.Handler
+    events:
+      - http:
+          method: GET
+          path: /hello
